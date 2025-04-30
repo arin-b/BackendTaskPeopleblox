@@ -13,4 +13,5 @@ model user {
   password String
   failedAttempts DateTime[]
   isLocked Boolean @default(false)
+  lockedTimestamp DateTime @default(now())
 }

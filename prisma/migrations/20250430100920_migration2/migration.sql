@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "user" ADD COLUMN     "lockedTimestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
