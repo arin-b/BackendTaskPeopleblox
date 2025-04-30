@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 
+// we will use this middleware only for our home page API to ensure that user is logged in
 function authMiddleware(req, res, next){
     const token = req.body  
 
