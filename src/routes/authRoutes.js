@@ -1,8 +1,9 @@
 import express from "express"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import prisma from "./prismaClient.js"
+import prisma from "../prismaClient.js"
 
+// contains apis for register and login
 const router = express.Router()
 
 router.post('/api/register', async (req, res) => {
@@ -62,7 +63,7 @@ router.post('/api/login', async (req, res) => {
         // We will basically retrieve the first and last elements of the array, check their difference and then decide whether to allow user ahead or not
 
         // we will also need to remove items from the failedAttempts array in case they are more than 12 hours old.
-        
+
         // Step 4: Check if password is valid i.e. login has succeeded
         const passwordIsValid = await bcrypt.compare(password, user.password)
 

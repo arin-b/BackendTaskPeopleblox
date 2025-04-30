@@ -1,8 +1,9 @@
 import express from "express"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import prisma from "./prismaClient.js"
+import prisma from "../prismaClient.js"
 
+// created separate file for this api since we need to authenticate it first using jwt
 
 const router = express.Router()
 
@@ -12,7 +13,7 @@ router.get('/api/home', async (req, res) => {
     try{
         const user = prisma.user.findUnique({
             where: {
-                username
+                id
             }
         })
 

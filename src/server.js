@@ -1,7 +1,7 @@
 import express from 'express'
-import authRoutes from "./authRoutes.js"
-import authMiddleware from "./authMiddleware.js"
-import infoRoute from "./infoRoute.js"
+import authRoutes from "./routes/authRoutes.js"
+import authMiddleware from "./authMiddleware/authMiddleware.js"
+import infoRoute from "./routes/infoRoute.js"
 //import { PrismaClient } from "@prisma/client"
 
 //const prisma = new PrismaClient()
