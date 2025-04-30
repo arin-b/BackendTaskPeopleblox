@@ -4,14 +4,14 @@
 1. I am using Prisma Postgres (the online cloud-based database)
 2. This is the Database Schema:
 
-model user {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
-  password String
-  failedAttempts DateTime[]
-  isLocked Boolean @default(false)
-  lockedTimestamp DateTime @default(now())
-}
+model user {<br>
+  id       Int     @id @default(autoincrement())<br>
+  username String  @unique<br>
+  password String<br>
+  failedAttempts DateTime[]<br>
+  isLocked Boolean @default(false)<br>
+  lockedTimestamp DateTime @default(now())<br>
+}<br>
 here:
 
 id, username, password: self-explanatory
