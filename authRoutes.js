@@ -47,8 +47,8 @@ router.post('/api/login', async (req, res) => {
         }
 
         // Step 2: Check if user is locked out or not 
-        const lockedDuration = user.lockedTimestamp - Date.now()
-        if ( lockedDuration > 24 || lockedDuration == 0){
+        const lockedDuration = (user.lockedTimestamp - Date.now())/2.7778e-7 //convert milliseconds to hours
+        if ( lockedDuration > 24){
             await prisma.post.update({
                 where: { id: user.id },
                 data: { isLocked: false },
@@ -61,6 +61,8 @@ router.post('/api/login', async (req, res) => {
         // Step 3: Check if user already has 5 failed attempts. 
         // We will basically retrieve the first and last elements of the array, check their difference and then decide whether to allow user ahead or not
 
+        // we will also need to remove items from the failedAttempts array in case they are more than 12 hours old.
+        
         // Step 4: Check if password is valid i.e. login has succeeded
         const passwordIsValid = await bcrypt.compare(password, user.password)
 

@@ -7,7 +7,7 @@ import prisma from "./prismaClient.js"
 const router = express.Router()
 
 router.get('/api/home', async (req, res) => {
-    const {username, password} = req.body
+    const { id } = req.body
 
     try{
         const user = prisma.user.findUnique({
