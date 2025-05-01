@@ -6,7 +6,7 @@ import prisma from "../prismaClient.js"
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    const { userId } = req.userId
+    const userId  = req.userId
 
     try{
         const user = await prisma.user.findUnique({
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
                 id: userId
             },
             select: {
-                username
+                username: true
             }
         })
 
