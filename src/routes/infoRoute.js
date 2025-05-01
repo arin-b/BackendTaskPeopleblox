@@ -1,27 +1,32 @@
 import express from "express"
-import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
 import prisma from "../prismaClient.js"
 
 // created separate file for this api since we need to authenticate it first using jwt
 
 const router = express.Router()
 
-router.get('/api/home', async (req, res) => {
-    const { id } = req.body
+router.get('/', async (req, res) => {
+    const { userId } = req.userId
 
     try{
-        const user = prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
             where: {
-                id
+                id: userId
+            },
+            select: {
+                username
             }
         })
 
-        res.json({"username": username, "password": password})
+        if(!user){ // in case the user was deleted after the token was created
+            return res.status(404).json({message: "User not found"})
+        }
+
+        res.json({ message: `Welcome, ${user.username}` })    
     }
     catch(err){
         console.error(err)
-        res.sendStatus(503)
+        res.status(500).json({message: "Server error while retrieveing data. "})
     }
 })
 
